@@ -1,0 +1,37 @@
+<% include partials/header.ejs %>
+<section class="container-fluid">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="card" id="register">
+                <div class="card-header">
+                    Register
+                </div>
+                <div class="card-body">
+                    <form action="/users/register" method="POST">
+                        <div class="form-group">
+                            <input class="form-control" id="un" name="username" type="text" placeholder="Enter your username"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" id="em" name="email" type="email" placeholder="Enter your email"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control" name="password" id="password" type="password" placeholder="Enter your password"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="checkpassword" id="confirm_password" type="password"
+                                placeholder="confirm your password" required>
+                        </div>
+                        <button id="Reg" class="btn btn-lg btn-primary mr-auto"> Submit </button>
+                    </form>
+                </div>
+            </div>
+        <div class="col-1"></div>
+        </div>
+    </div>
+</section>
+<% include partials/footer.ejs %>

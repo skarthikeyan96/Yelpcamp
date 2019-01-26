@@ -1,8 +1,35 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
-a {
-  color: #00B7FF;
+body{
+    font-family: 'Open Sans', sans-serif;
+    height: 100%;
+    margin: 0;
+    padding-bottom: 10px;
+}
+#particles-js
+{ 
+    position:fixed; 
+    width: 100%; 
+    height: 100%; 
+    background-color: #b61924; 
+    background-image: url(../images/img_parallax.jpg); 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    background-position: 50% 50%; 
+}
+.navbar-light .navbar-brand,.navbar-light .navbar-nav .nav-link  {
+    color: #ffffff;
+}
+button.btn.btn-primary.my-2.my-sm-0 {
+    border-color: white;
+    border-radius:0px;
+}
+#register{
+top: 102px;
+}
+#post,#single-post{
+    padding-top: 15px;
+}
+#deletepost,#deletecomment{
+    display: inline;
 }
