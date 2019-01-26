@@ -22,12 +22,11 @@ $("#Reg").on("click", (e) => {
     $.ajax({
         type: 'POST',
         data: JSON.stringify(data),
-        url: '/users/register',
+        url: '/user/register',
         contentType: 'application/json',
         success: function (data) {
             console.log(JSON.stringify(data));
             if (data.message == "failure") {
-                //alert(data.error)
                 swal({
                     title: "Oops!",
                     text: `${data.error} Please login to continue`,
@@ -40,7 +39,7 @@ $("#Reg").on("click", (e) => {
                 $('#confirm_password').val("")
             }
             if(data.message == "success"){
-                location.href = '/';
+                location.href = '/main';
             }
         },
         error: function (data) {
@@ -62,7 +61,7 @@ $("#log").on('click',(e)=>{
         success : (data)=>{
             console.log(data)
              if(data.SERVER_RESPONSE == 1){
-                location.href = "/"
+                location.href = "/main"
              }
         },
         error : (data)=>{

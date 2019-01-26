@@ -2,8 +2,6 @@ var express = require('express');
 const passport = require('passport');
 const User = require('../models/users');
 var router = express.Router();
-
-
 router.get('/login',(req,res)=>{
   res.render('login')
 })
@@ -39,7 +37,7 @@ router.post('/login',function(req, res, next) {
         req.logIn(user, function(err) {
             if (err)
             console.log(err)
-            req.flash("success",`Successfully logged in to the application ${user.firstname}`)
+            req.flash("success",`Successfully logged in to the application ${user.username}`)
             return res.status(200).json({ SERVER_RESPONSE: 1, SERVER_MESSAGE: "Logged in!" });
         });
     })(req, res, next);
