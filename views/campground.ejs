@@ -1,0 +1,38 @@
+<% include partials/main-header.ejs %>
+<% include partials/header.ejs %>
+<section class="container-fluid">
+    <section class="jumbotron">
+        <h1><i class="fa fa-map" aria-hidden="true"></i>
+            Welcome to YelpCamp!</h1>
+        <p>View our hand-picked campgrounds around the world</p>
+        <a class="btn btn-primary" href="/campgrounds/new"> Add campgrounds</a>
+    </section>
+</section>
+<section class="container-fluid">
+        <div class="row">
+            <% camps.forEach((camp)=>{%>
+            <div class="col-3">
+                <div class="card">
+                    <img class="card-img-top" src="<%= camp.image %>" alt="Card image cap">
+                    <div class="card-body text-justify">
+                        <div class="card-title text-primary">
+                            <%= camp.Name %> <span class="pull-right"> $
+                                <%= camp.price%></span></div>
+                        <br />
+                        <div class="card-text">
+                            <%= camp.description %>
+                        </div>
+                        <hr />
+                        <a class="btn btn-block btn-primary" href="/campground/show"> View More </a>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated
+                            <%= camp.created.getMinutes()%> mins ago <Span class="pull-right"> By
+                                <%= camp.author.username %></Span></small>
+                    </div>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+</section>
+<% include partials/footer.ejs%>

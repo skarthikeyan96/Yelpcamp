@@ -39,7 +39,7 @@ $("#Reg").on("click", (e) => {
                 $('#confirm_password').val("")
             }
             if(data.message == "success"){
-                location.href = '/main';
+                location.href = '/campgrounds';
             }
         },
         error: function (data) {
@@ -61,7 +61,7 @@ $("#log").on('click',(e)=>{
         success : (data)=>{
             console.log(data)
              if(data.SERVER_RESPONSE == 1){
-                location.href = "/main"
+                location.href = "/campgrounds"
              }
         },
         error : (data)=>{

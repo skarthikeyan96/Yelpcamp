@@ -15,12 +15,13 @@ const flash = require('connect-flash');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const campgroundRoute = require('./routes/campgrounds')
 
 //importing models
 const User = require("./models/users")
 const app = express();
 //connecting to mongoose
-mongoose.connect('mongodb://localhost/yelpcampv2', { useNewUrlParser: true }) // test -- db
+mongoose.connect('mongodb://root:root123@ds054308.mlab.com:54308/yelpcamp', { useNewUrlParser: true }) // test -- db
 //setting up passport 
 app.use(require('express-session')({
   secret: 'SECRET',
@@ -55,6 +56,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.use(MethodOverride("_method"))
 app.use('/',indexRouter);
 app.use('/user', usersRouter);
+app.use('/campgrounds',campgroundRoute)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

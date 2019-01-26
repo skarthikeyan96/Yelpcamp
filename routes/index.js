@@ -5,9 +5,4 @@ const middleware = require('../middleware')
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
-// index page after login
-router.get('/main',middleware.isLoggedIn,(req,res)=>{
-  res.render("main")
-})
-
 module.exports = router;
