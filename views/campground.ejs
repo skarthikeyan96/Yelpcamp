@@ -20,10 +20,10 @@
                                 <%= camp.price%></span></div>
                         <br />
                         <div class="card-text">
-                            <%= camp.description %>
+                            <%= camp.description.substring(0,100)%>...
                         </div>
                         <hr />
-                        <a class="btn btn-block btn-primary" href="/campground/show"> View More </a>
+                        <a class="btn btn-block btn-primary" href="/campgrounds/<%= camp.id %>"> View More </a>
                     </div>
                     <div class="card-footer">
                         <small class="text-muted">Last updated

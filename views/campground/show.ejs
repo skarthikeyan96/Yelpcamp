@@ -1,0 +1,30 @@
+<% include ../partials/main-header.ejs %>
+<% include ../partials/header.ejs %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <!-- Maps go here -->
+        </div>
+        <div class="col-md-9">
+            <div class="card">
+                <img class="card-img-top img img-responsive" src="<%= camp.image %>">
+                <div class="card-body"> 
+                <div class="card-title text-primary">
+                    <%= camp.Name %>
+                    <span class="pull-right"> $ <%= camp.price %> / night</span>
+                </div>
+                <div class="card-text text-justify">
+                    <%= camp.description %>
+                    <hr/>
+                    <span class="text-muted pull-left"> Added by <%=camp.author.username %> </span>
+                    <span class="text-muted pull-right">Updated <%= camp.created.getMinutes() %> min ago </span>
+                </div> 
+            </div>
+        </div>
+        <br>
+        <section>
+                <h4> Add a comment </h4>
+        </section>
+</div>
+
+<% include ../partials/footer.ejs%>

@@ -26,7 +26,7 @@ router.post('/register', (req, res) => {
 router.get('/logout', (req, res) => {
   req.logout();
   req.flash("success","You have been logged out")
-  res.redirect('/')
+  res.redirect('/campgrounds')
 })
 
 router.post('/login',function(req, res, next) {

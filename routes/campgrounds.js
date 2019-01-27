@@ -13,11 +13,11 @@ router.get('/',(req,res)=>{
     })
 })
 
-router.get('/new',(req,res)=>{
+router.get('/new',middleware.isLoggedIn,(req,res)=>{
     res.render('campground/new')
 })
 
-router.post('/new',(req,res)=>{
+router.post('/new',middleware.isLoggedIn,(req,res)=>{
     
        let Name=req.body.name;
        let Image=req.body.image;
@@ -31,10 +31,18 @@ router.post('/new',(req,res)=>{
     campground.create(newcampground,(err,newdata)=>{
         if(!err){
           console.log(newdata)
-          res.redirect('/campground')
+          res.redirect('/campgrounds')
         }
         else{
             console.log(err)
+        }
+    })
+})
+
+router.get('/:id',function(req,res){
+    campground.findById(req.params.id,(err,found)=>{
+        if(!err){
+            res.render('campground/show',{camp:found})
         }
     })
 })
