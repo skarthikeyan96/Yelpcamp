@@ -15,6 +15,12 @@
                 </div>
                 <div class="card-text text-justify">
                     <%= camp.description %>
+                    <br/>
+                    <br/>
+                    <a class="btn btn-warning btn-sm" href="/campgrounds/<%= camp._id %>/edit">Edit</a>
+                    <form class="delete-form" id="deletepost" action="/campgrounds/<%= camp._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger btn-sm">Delete</button>
+                    </form>
                     <hr/>
                     <span class="text-muted pull-left"> Added by <%=camp.author.username %> </span>
                     <span class="text-muted pull-right">Updated <%= camp.created.getMinutes() %> min ago </span>
