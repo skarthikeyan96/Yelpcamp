@@ -4,12 +4,12 @@ const CampgroundSchema = new mongoose.Schema({
     image : String,
     description : String,
     price : Number,
-    // comments : [
-    //     {
-    //         type:mongoose.Schema.Types.ObjectId,
-    //         ref:"Comment"
-    //     }
-    // ],
+    comments : [
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"Comment"
+        }
+    ],
     author :{
         id : {
             type:mongoose.Schema.Types.ObjectId,

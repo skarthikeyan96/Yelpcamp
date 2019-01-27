@@ -12,10 +12,10 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const flash = require('connect-flash');
 
-
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const campgroundRoute = require('./routes/campgrounds')
+const campgroundRoute = require('./routes/campgrounds');
+const commentRoute = require('./routes/comments');
 
 //importing models
 const User = require("./models/users")
@@ -57,6 +57,7 @@ app.use(MethodOverride("_method"))
 app.use('/',indexRouter);
 app.use('/user', usersRouter);
 app.use('/campgrounds',campgroundRoute)
+app.use('/campgrounds/:id/comment',commentRoute);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

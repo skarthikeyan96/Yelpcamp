@@ -8,29 +8,60 @@
         <div class="col-md-9">
             <div class="card">
                 <img class="card-img-top img img-responsive" src="<%= camp.image %>">
-                <div class="card-body"> 
-                <div class="card-title text-primary">
-                    <%= camp.Name %>
-                    <span class="pull-right"> $ <%= camp.price %> / night</span>
+                <div class="card-body">
+                    <div class="card-title text-primary">
+                        <%= camp.Name %>
+                        <span class="pull-right"> $
+                            <%= camp.price %> / night</span>
+                    </div>
+                    <div class="card-text text-justify">
+                        <%= camp.description %>
+                        <br />
+                        <br />
+                        <% if(currentUser && camp.author.id.equals(currentUser._id)){ %>
+                        <a class="btn btn-warning btn-sm" href="/campgrounds/<%= camp._id %>/edit">Edit</a>
+                        <form class="delete-form" id="deletepost" action="/campgrounds/<%= camp._id %>?_method=DELETE"
+                            method="POST">
+                            <button class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                        <%}%>
+                        <hr />
+                        <span class="text-muted pull-left"> Added by
+                            <%=camp.author.username %> </span>
+                        <span class="text-muted pull-right">Updated
+                            <%= camp.created.getMinutes() %> min ago </span>
+                    </div>
                 </div>
-                <div class="card-text text-justify">
-                    <%= camp.description %>
-                    <br/>
-                    <br/>
-                    <a class="btn btn-warning btn-sm" href="/campgrounds/<%= camp._id %>/edit">Edit</a>
-                    <form class="delete-form" id="deletepost" action="/campgrounds/<%= camp._id %>?_method=DELETE" method="POST">
-                        <button class="btn btn-danger btn-sm">Delete</button>
-                    </form>
-                    <hr/>
-                    <span class="text-muted pull-left"> Added by <%=camp.author.username %> </span>
-                    <span class="text-muted pull-right">Updated <%= camp.created.getMinutes() %> min ago </span>
-                </div> 
             </div>
-        </div>
-        <br>
-        <section>
+            <br>
+            <section>
                 <h4> Add a comment </h4>
-        </section>
-</div>
+                <form action="/campgrounds/<%= camp._id %>/comment" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="comment" class="form-control" required />
+                    </div>
+                    <button class="btn btn-primary"> Post a comment </button>
+                </form>
+                <hr />
+                <br />
+                <% camp.comments.forEach(function(comment){ %>
+                <p>
+                    <%= comment.text %> by <strong>
+                        <%= comment.author.username%> </strong>
+                    <span class="text-muted pull-right"> Updated
+                        <%= comment.created.getMinutes()%> min ago</span>
+                </p>
+                <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                <a href="/campgrounds/<%= camp._id %>/comment/<%= comment._id %>/edit" class="btn btn-sm btn-warning">
+                    Edit </a>
+                <form id="deletecomment" action="/campgrounds/<%= camp._id %>/comment/<%= comment._id %>?_method=DELETE"
+                    method="POST">
+                    <button class="btn btn-sm btn-danger"> Delete </button>
+                </form>
+                <%}%>
+                <hr/>
+                <% }); %>
+            </section>
+        </div>
 
-<% include ../partials/footer.ejs%>
+        <% include ../partials/footer.ejs%>
