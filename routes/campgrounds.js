@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const campground = require('../models/campgrounds')
-const User = require('../models/users')
 const middleware = require('../middleware')
 
 router.get('/', (req, res) => {
@@ -58,7 +57,7 @@ router.get('/:id', function (req, res) {
     })
 })
 
-router.get('/:id/edit', (req, res) => {
+router.get('/:id/edit', middleware.checkcampgroundOwner ,(req, res) => {
     campground.findById(req.params.id, (err, found) => {
         if (!err) {
             res.render('campground/edit', {
@@ -70,7 +69,7 @@ router.get('/:id/edit', (req, res) => {
     })
 })
 
-router.put('/:id', function (req, res) {
+router.put('/:id', middleware.checkcampgroundOwner, function (req, res) {
     let Name = req.body.name;
     let Image = req.body.image;
     let description = req.body.description;
@@ -96,7 +95,7 @@ router.put('/:id', function (req, res) {
 });
 
 //delete campground 
-router.delete('/:id',(req, res) => {
+router.delete('/:id',middleware.checkcampgroundOwner,(req, res) => {
     campground.findByIdAndRemove(req.params.id, (err) => {
       if (!err) {
         res.redirect('/campgrounds')

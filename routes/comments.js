@@ -4,7 +4,7 @@ const campground = require('../models/campgrounds')
 const Comment = require('../models/comments')
 const middleware = require('../middleware')
 
-router.post("/", (req, res) => {
+router.post("/",middleware.isLoggedIn, (req, res) => {
     //console.log("params ",req.params.id)
     campground.findById(req.params.id, (err, found) => {
         if (!err) {
@@ -33,7 +33,7 @@ router.post("/", (req, res) => {
         }
     })
 });
-router.get('/:commentid/edit',(req,res)=>{
+router.get('/:commentid/edit',middleware.checkCommentOwner,(req,res)=>{
     Comment.findById(req.params.commentid,(err,foundComment)=>{
       if(!err){
         res.render('edit_comment',{post_id:req.params.id,comment:foundComment})
@@ -43,7 +43,7 @@ router.get('/:commentid/edit',(req,res)=>{
       }
     })
   })
-router.put('/:commentid', (req, res) => {
+router.put('/:commentid',middleware.checkCommentOwner, (req, res) => {
   let text = req.body.text;
   let comment = {text}
   Comment.findByIdAndUpdate(req.params.commentid, comment, (err, updatedComment) => {
@@ -56,7 +56,7 @@ router.put('/:commentid', (req, res) => {
       }
     })
   })
-router.delete('/:commentid',(req, res) => {
+router.delete('/:commentid',middleware.checkCommentOwner,(req, res) => {
     Comment.findByIdAndRemove(req.params.commentid, (err) => {
       if (!err) {
         res.redirect(`/campgrounds/${req.params.id}`)
